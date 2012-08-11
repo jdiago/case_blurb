@@ -1,6 +1,7 @@
 CaseBlurb::Application.routes.draw do
   get "home/index"
 
+  resources :cases
   resources :users, except: :show
 
   controller :sessions do
