@@ -1,5 +1,7 @@
 <ul>
 <% @cases.each do |c| %>
-  <li><%= c.name %></li>
+  <li><%= link_to c.name, c %></li>
 <% end %>
 </ul>
+
+<%= link_to 'New Case', new_case_path %>
