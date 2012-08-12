@@ -19,9 +19,13 @@
     	<div class="convo-box">
         <% @case.blurbs.order("created_at DESC").each do |b| %>
           <div class="well">
-            <span class="message-sender"><%= b.user_id %></span>
-            <span class="message-date"><%= b.created_at %></span>
-            <span class="message-text"><%= b.content %></span>
+            <div class="row-fluid">
+              <span class="message-sender"><%= b.user.username rescue "" %></span>
+              <span class="message-date pull-right"><%= b.created_at %></span>
+            </div>
+            <div class="row-fluid">
+              <span class="message-text"><%= b.content %></span>
+            </div>
           </div>
         <% end %>
     	</div>
@@ -34,7 +38,6 @@
 		font-weight: bold;
 	}
 	.message-date{
-		float:right;
 		font-size: 90%;
 		margin-right: 0.5em;
 		font-style: italic;
