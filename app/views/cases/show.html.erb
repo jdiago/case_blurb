@@ -1,27 +1,29 @@
-<div class="well">
-  <h1><%= @case.name %></h1>
+<div class="span6">
+  <div class="well">
+    <h1><%= @case.name %></h1>
 
-  <%= link_to 'Edit', edit_case_path(@case) %> | <%= link_to 'Back', cases_path %>
-</div>
+    <%= link_to 'Edit', edit_case_path(@case) %> | <%= link_to 'Back', cases_path %>
+  </div>
 
-<div pub-key="pub-8170e21c-7fd2-4c90-aee1-88261c5c5816" sub-key="sub-894d0468-e416-11e1-a5bd-178bb4b7ab64" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
-<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+  <div pub-key="pub-8170e21c-7fd2-4c90-aee1-88261c5c5816" sub-key="sub-894d0468-e416-11e1-a5bd-178bb4b7ab64" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
+  <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
 
-<div class="blurbs-box">
-	<div class="input-box">
-		<input name="new-message" id="message-field" placeholder="Type new blurb..."/>
-	</div>
-  <br>
-	<div class="convo-box">
-    <% @case.blurbs.order("created_at DESC").each do |b| %>
-      <div class="well">
-        <span class="message-sender"><%= b.user_id %></span>
-        <span class="message-date"><%= b.created_at %></span>
-        <span class="message-text"><%= b.content %></span>
-      </div>
-    <% end %>
-	</div>
+  <div class="blurbs-box">
+  	<div class="input-box">
+  		<input name="new-message" id="message-field" placeholder="Type new blurb..."/>
+  	</div>
+    <br>
+  	<div class="convo-box">
+      <% @case.blurbs.order("created_at DESC").each do |b| %>
+        <div class="well">
+          <span class="message-sender"><%= b.user_id %></span>
+          <span class="message-date"><%= b.created_at %></span>
+          <span class="message-text"><%= b.content %></span>
+        </div>
+      <% end %>
+  	</div>
+  </div>
 </div>
 
 <script> (function(){
