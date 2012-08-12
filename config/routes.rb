@@ -1,5 +1,7 @@
 CaseBlurb::Application.routes.draw do
-  resources :cases
+  resources :cases do
+    resources :blurbs
+  end
   resources :users, except: :show
 
   controller :sessions do
