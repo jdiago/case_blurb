@@ -1,10 +1,10 @@
-<h1>Listing users</h1>
+<h1>Listing Users</h1>
 
 <% if notice %>
   <p><%= notice %></p>
 <% end %>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th></th>
@@ -14,7 +14,6 @@
   <tr>
     <td><%= user.username %></td>
     <td>
-      <%= link_to 'Show', user %><br>
       <%= link_to 'Edit', edit_user_path(user) %><br>
       <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
     </td>
