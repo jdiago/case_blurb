@@ -3,27 +3,54 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
 		<style>
-			.convo-box{
-				width: 	300px;
-				height: 200px;
+			.convo-box,
+			input[name="new-message"]{
 				background: grey;
+				border-radius: 0.5em;
 			}
-			/*
+			.convo-box{
+				height: 200px;
+				margin: 3em auto;
+				width:33%;
+			}
+			.input-box{
+				margin: 2em auto;
+				width:33%;
+			}
+			input{
+				height: 3em;
+				width:100%;
+				margin: 0.25em 0;
+			}
+			.convo-box,
+			input{
+				box-shadow: 10px 10px 25px #888888;
+			}
 			.chat-area{
-				margin: 0 auto;
-				width: 50%;
-				height: 10%;
+				width: 100%;
+				height: 20%;
+				word-wrap: break-word;
 			}
-			*/
+			.message-sender{
+				font-weight: bold;
+			}
+			.message-date{
+				float:right;
+				font-size: 90%;
+				margin-right: 0.5em;
+				font-style: italic;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div pub-key="pub-8170e21c-7fd2-4c90-aee1-88261c5c5816" sub-key="sub-894d0468-e416-11e1-a5bd-178bb4b7ab64" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
 		<div class='chat-area'>
-			<div class = "convo-box"></div>
+			<div class = "convo-box">
+			</div>
 			<div class = "input-box">
-				<span>Input: </span><input name="new-message" id="message-field" placeholder="Type new blurb..."/>
+				<div>Input: </div>
+				<input name="new-message" id="message-field" placeholder="Type new blurb..."/>
 			</div>
 		</div>
 		<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
@@ -31,7 +58,7 @@
 			// Channel to be provided by CaseBlurb db. Probably use caseId.
 			var channel = "channel";
 			// Provide username too for posting to convo box:
-			var user = "[Username provided by Rails]";
+			var user = "[Rails Username]";
 			var msgBox = $('#message-field');
 		 
 		    // LISTEN FOR MESSAGES
@@ -42,8 +69,13 @@
 		                                         // OR WHEN PAGE CHANGES.
 		 
 		        callback   : function(message) { // RECEIVED A MESSAGE.
-		        	// TODO: Add date
-		            $('.convo-box').append('<p>'+user +': '+message+'</p>')
+		        	// TODO: Add date/time stamp from rails
+		            $('.convo-box').append('\
+		        		<div class = "message">\
+		        			<span class ="message-sender">'+message.sender+'</span>\
+		        			<span class = "message-text">'+message.text+'</span>\
+		        			<span class = "message-date">'+message.date+'</span>\
+		        		</div>')
 		        },
 		 
 		        disconnect : function() {        // LOST CONNECTION.
@@ -57,19 +89,19 @@
 		            $('.convo-box').append("Connection restored!")
 		        },
 		 
-		        connect    : function() {        // CONNECTION ESTABLISHED.
-		 
-		            /*
+		        connect    : function() {        // CONNECTION ESTABLISHED.		            
 		            PUBNUB.publish({             // SEND A MESSAGE.
-		                channel : "hello_world",
-		                message : "Hi from PubNub."
+		                channel : channel,
+		                message : {sender: user, text:" is now viewing this blurb.", date: '[date]'}
 		            })
-					*/
 		        }
 		    });
 		    $('#message-field').keyup(function(e) {
  				(e.which) === 13 && PUBNUB.publish({
- 				channel : channel, message : msgBox.val(), x: msgBox.val('')});
+ 				channel : channel, message : {sender: user+': ', text: msgBox.val(), date:'[date]'}, x: msgBox.val('')}) && (function(){
+ 					// Do rails message transmission to CaseBlurb db here
+ 					console.log("rails magic starts here");
+ 				})()
  			});
 		})();
 		</script>
