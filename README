@@ -1,9 +1,19 @@
 #CaseBlurb for LegalFile - AT&T Hackathon August 2012
 
-LegalFile for iPad brings lawyers up-to-date and into the world of mobile technology. It allows litigators to manage their cases, case documents and client information while on-the-go, digitally with the Apple iPad.
+LegalFile for iPad brings lawyers up-to-date and into the world of mobile
+technology. It allows litigators to manage their cases, case documents and
+client information while on-the-go, digitally with the Apple iPad.
 
-For this hosting of the AT&T Hackathon in Miami, Esenem, LLC., LegalFile's parent company propositioned developers to propose an aspect of collaboration that could benefit the LegalFile product. This GitHub project, CaseBlurb, showcases that. 
+For this hosting of the AT&T Hackathon in Miami, Esenem, LLC., LegalFile's
+parent company propositioned developers to propose an aspect of collaboration
+that could benefit the LegalFile product. This GitHub project, CaseBlurb,
+showcases that. 
 
-CaseBlurb allows for live messages to be trasmitted between users about cases they are privy to. All messages transmitted are broadcast live and also logged for later review if one or more users are not available to receive the message live.
+CaseBlurb allows for live messages to be trasmitted between users about cases
+they are privy to. All messages transmitted are broadcast live and also logged
+for later review if one or more users are not available to receive the message
+live.
 
-CaseBlurb is built on Ruby on Rails, integrates Twitter Bootstrap and was developed by @jdiago and @mrdazm under the senseis-ship of @mcnamarasean and @bonzoesc.
+CaseBlurb is built on Ruby on Rails, integrates Twitter Bootstrap and was
+developed by @jdiago and @mrdazm under the senseis-ship of @mcnamarasean and
+@bonzoesc.

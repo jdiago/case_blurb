@@ -1,3 +1,0 @@
-#CaseBlurb for LegalFile - AT&T Hackathon August 2012
-
-CaseBlurb demonstrates a method of integrating collaboration into the LegalFile software allowing for real-time commenting/conversations about LegalFile cases.
