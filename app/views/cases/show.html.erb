@@ -64,7 +64,7 @@
 </div>
 <script> (function(){
 	// Channel to be provided by CaseBlurb db. Probably use case_id.
-	var channel = "<%= @case.id %>";
+	var channel = "<%= @case.name %> <%= @case.id %>";
 	// Provide username too for posting to convo box:
 	var user = "<%= session[:user_name]%>";
 	var msgBox = $('#message-field');
@@ -81,7 +81,7 @@
             $('.convo-box').prepend('\
         		<div class = "message">\
         			<span class ="message-sender">'+message.sender+'</span>\
-        			<span class = "message-date">'+message.date+'</span>\
+        			<span class = "message-date"><%= Time.now %></span>\
         			<span class = "message-text">'+message.text+'</span>\
         		</div>')
         },
