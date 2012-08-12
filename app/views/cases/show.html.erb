@@ -62,9 +62,13 @@
         	// TODO: Add date/time stamp from rails
             $('.convo-box').prepend('\
         		<div class = "well">\
-        			<span class ="message-sender">'+message.sender+'</span>\
-        			<span class = "message-date"><%= Time.now %></span>\
-        			<span class = "message-text">'+message.text+'</span>\
+              <div class="row-fluid">\
+        			<span class="message-sender">'+message.sender+'</span>\
+        			<span class="message-date pull-right"><%= Time.now %></span>\
+              </div>\
+              <div class="row-fluid">\
+        			<span class="message-text">'+message.text+'</span>\
+              </div>\
         		</div>')
         },
  
@@ -92,7 +96,7 @@
 		if((e.which) === 13){
 			PUBNUB.publish({
 				channel : channel, 
-				message : {sender: user+': ',
+				message : {sender: user,
 					text: msgBox.val(),
 					date:'[date]'
 				},
