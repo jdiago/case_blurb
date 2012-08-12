@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
+		<style>
+			.convo-box{
+				width: 	300px;
+				height: 200px;
+				background: grey;
+			}
+			/*
+			.chat-area{
+				margin: 0 auto;
+				width: 50%;
+				height: 10%;
+			}
+			*/
+		</style>
+	</head>
+
+	<body>
+		<div pub-key="pub-8170e21c-7fd2-4c90-aee1-88261c5c5816" sub-key="sub-894d0468-e416-11e1-a5bd-178bb4b7ab64" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+		<div class='chat-area'>
+			<div class = "convo-box"></div>
+			<div class = "input-box">
+				<span>Input: </span><input name="new-message" id="message-field" placeholder="Type new blurb..."/>
+			</div>
+		</div>
+		<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+		<script> (function(){
+			// Channel to be provided by CaseBlurb db. Probably use caseId.
+			var channel = "channel";
+			// Provide username too for posting to convo box:
+			var user = "[Username provided by Rails]";
+			var msgBox = $('#message-field');
+		 
+		    // LISTEN FOR MESSAGES
+		    PUBNUB.subscribe({
+		        channel    : channel,      // CONNECT TO THIS CHANNEL.
+		 
+		        restore    : false,              // STAY CONNECTED, EVEN WHEN BROWSER IS CLOSED
+		                                         // OR WHEN PAGE CHANGES.
+		 
+		        callback   : function(message) { // RECEIVED A MESSAGE.
+		        	// TODO: Add date
+		            $('.convo-box').append('<p>'+user +': '+message+'</p>')
+		        },
+		 
+		        disconnect : function() {        // LOST CONNECTION.
+		            $('.convo-box').append(
+		                "Error: Connection Lost." +
+		                "Will auto-reconnect when Online."
+		            )
+		        },
+		 
+		        reconnect  : function() {        // CONNECTION RESTORED.
+		            $('.convo-box').append("Connection restored!")
+		        },
+		 
+		        connect    : function() {        // CONNECTION ESTABLISHED.
+		 
+		            /*
+		            PUBNUB.publish({             // SEND A MESSAGE.
+		                channel : "hello_world",
+		                message : "Hi from PubNub."
+		            })
+					*/
+		        }
+		    });
+		    $('#message-field').keyup(function(e) {
+ 				(e.which) === 13 && PUBNUB.publish({
+ 				channel : channel, message : msgBox.val(), x: msgBox.val('')});
+ 			});
+		})();
+		</script>
+	</body>
+</html>
