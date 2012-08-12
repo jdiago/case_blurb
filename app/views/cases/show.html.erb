@@ -88,7 +88,7 @@
         connect    : function() {        // CONNECTION ESTABLISHED.		            
             PUBNUB.publish({             // SEND A MESSAGE.
                 channel : channel,
-                message : {sender: user, text:" is now viewing this blurb.", date: '[date]'}
+                message : {sender: '[Announcement]', text: user + " is now viewing this blurb.", date: '[date]'}
             })
         }
     });
