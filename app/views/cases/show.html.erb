@@ -24,6 +24,18 @@
 	</div>
 </div>
 
+<style>
+	.message-sender{
+		font-weight: bold;
+	}
+	.message-date{
+		float:right;
+		font-size: 90%;
+		margin-right: 0.5em;
+		font-style: italic;
+	}
+</style>
+
 <script> (function(){
 	// Channel to be provided by CaseBlurb db. Probably use case_id.
 	var channel = "<%= @case.name %> <%= @case.id %>";
@@ -49,9 +61,11 @@
         },
  
         disconnect : function() {        // LOST CONNECTION.
-            $('.convo-box').append(
-                "Error: Connection Lost." +
-                "Will auto-reconnect when Online."
+            $('.convo-box').prepend(
+                "<div class=\"well\">\
+                	Error: Connection Lost." +
+                	"Will auto-reconnect when Online.\
+                </div>"
             )
         },
  
