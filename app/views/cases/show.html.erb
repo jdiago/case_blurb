@@ -11,7 +11,7 @@
 		border-radius: 0.5em;
 	}
 	.convo-box{
-		height: 200px;
+		min-height: 200px;
 		margin: 3em auto;
 		width:33%;
 	}
@@ -63,10 +63,10 @@
   	</div>
 </div>
 <script> (function(){
-	// Channel to be provided by CaseBlurb db. Probably use caseId.
-	var channel = "channel";
+	// Channel to be provided by CaseBlurb db. Probably use case_id.
+	var channel = "<%= @case.id %>";
 	// Provide username too for posting to convo box:
-	var user = "[Rails Username]";
+	var user = "<%= session[:user_name]%>";
 	var msgBox = $('#message-field');
  
     // LISTEN FOR MESSAGES
@@ -104,12 +104,26 @@
             })
         }
     });
-    $('#message-field').keyup(function(e) {
-			(e.which) === 13 && PUBNUB.publish({
-			channel : channel, message : {sender: user+': ', text: msgBox.val(), date:'[date]'}, x: msgBox.val('')}) && (function(){
-				// Do rails message transmission to CaseBlurb db here
-				console.log("rails magic starts here");
-			})()
-		});
+	$('#message-field').keyup(function(e) {
+		if((e.which) === 13){
+			PUBNUB.publish({
+				channel : channel, 
+				message : {sender: user+': ',
+					text: msgBox.val(),
+					date:'[date]'
+				},
+				callback: function(resp){
+					$.ajax({
+						url: '<%= @case.id %>/blurbs.json',
+						type:'POST',
+						data:{blurb:{content:msgBox.val(),
+							user_id:<%= session[:user_id] %>}
+						}
+					})
+					msgBox.val('');
+				}
+			});
+		}
+	});
 })();
 </script>
