@@ -1,3 +1,11 @@
-<h1><%= @case.name %></h1>
+<div class="well">
+  <h1><%= @case.name %></h1>
 
-<%= link_to 'Edit', edit_case_path %> | <%= link_to 'Back', cases_path %>
+  <%= link_to 'Edit', edit_case_path(@case) %> | <%= link_to 'Back', cases_path %>
+</div>
+
+<div class="well">
+  <div class="blurb">
+
+  </div>
+</div>
