@@ -70,7 +70,7 @@
 		 
 		        callback   : function(message) { // RECEIVED A MESSAGE.
 		        	// TODO: Add date/time stamp from rails
-		            $('.convo-box').append('\
+		            $('.convo-box').prepend('\
 		        		<div class = "message">\
 		        			<span class ="message-sender">'+message.sender+'</span>\
 		        			<span class = "message-text">'+message.text+'</span>\
