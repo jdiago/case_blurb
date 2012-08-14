@@ -1,4 +1,5 @@
 class DocsController < ApplicationController
+  skip_before_filter :authorize
   # GET /docs
   # GET /docs.json
   def index

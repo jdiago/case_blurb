@@ -1,20 +1,10 @@
 <h1>Listing docs</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @docs.each do |doc| %>
-  <tr>
-    <td><%= link_to 'Show', doc %></td>
-    <td><%= link_to 'Edit', edit_doc_path(doc) %></td>
-    <td><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<ul>
+  <% @docs.each do |doc| %>
+    <li><%= doc.name %> | <%= link_to 'Show', doc %> | <%= link_to 'Edit', edit_doc_path(doc) %> | <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+</ul>
 
 <br />
 
