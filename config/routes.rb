@@ -1,10 +1,9 @@
 CaseBlurb::Application.routes.draw do
   resources :cases do
     resources :blurbs, only: :create
+    resources :docs
   end
 
-  resources :docs
-  
   resources :users, except: :show
 
   controller :sessions do

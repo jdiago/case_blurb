@@ -1,8 +1,13 @@
 <div class="row-fluid">
   <div class="well">
-    <h1><%= @case.name %></h1>
+    <div>
+      <h1><%= @case.name %></h1>
 
-    <%= link_to 'Edit', edit_case_path(@case) %> | <%= link_to 'Back', cases_path %>
+      <%= link_to 'Edit', edit_case_path(@case) %> | <%= link_to 'Back', cases_path %>
+    </div>
+    <div>
+      <%= link_to 'Manage Case Documents', case_docs_path(@case) %>
+    </div>
   </div>
 </div>
 <div class="row-fluid">
