@@ -1,9 +1,9 @@
 class DocsController < ApplicationController
   skip_before_filter :authorize
-  # GET /docs
-  # GET /docs.json
+
   def index
-    @docs = Doc.all
+    @case = Case.find(params[:case_id])
+    @case_docs = @case.docs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,10 +11,9 @@ class DocsController < ApplicationController
     end
   end
 
-  # GET /docs/1
-  # GET /docs/1.json
   def show
-    @doc = Doc.find(params[:id])
+    @case = Case.find(params[:case_id])
+    @case_doc = @case.docs.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -22,10 +21,9 @@ class DocsController < ApplicationController
     end
   end
 
-  # GET /docs/new
-  # GET /docs/new.json
   def new
-    @doc = Doc.new
+    @case = Case.find(params[:case_id])
+    @case_doc = @case.docs.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,19 +31,17 @@ class DocsController < ApplicationController
     end
   end
 
-  # GET /docs/1/edit
   def edit
     @doc = Doc.find(params[:id])
   end
 
-  # POST /docs
-  # POST /docs.json
   def create
-    @doc = Doc.new(params[:doc])
+    @case = Case.find(params[:case_id])
+    @case_doc = @case.docs.build(params[:case_doc])
 
     respond_to do |format|
-      if @doc.save
-        format.html { redirect_to @doc, notice: 'Doc was successfully created.' }
+      if @case_doc.save
+        format.html { redirect_to case_doc_path, notice: 'Doc was successfully created.' }
         format.json { render json: @doc, status: :created, location: @doc }
       else
         format.html { render action: "new" }
@@ -54,8 +50,6 @@ class DocsController < ApplicationController
     end
   end
 
-  # PUT /docs/1
-  # PUT /docs/1.json
   def update
     @doc = Doc.find(params[:id])
 
@@ -70,8 +64,6 @@ class DocsController < ApplicationController
     end
   end
 
-  # DELETE /docs/1
-  # DELETE /docs/1.json
   def destroy
     @doc = Doc.find(params[:id])
     @doc.destroy
