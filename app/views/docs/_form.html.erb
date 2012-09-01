@@ -1,10 +1,10 @@
-<%= form_for([@case, @case_doc]) do |f| %>
-  <% if @case_doc.errors.any? %>
+<%= form_for([@case, @doc]) do |f| %>
+  <% if @doc.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@case_doc.errors.count, "error") %> prohibited this doc from being saved:</h2>
+      <h2><%= pluralize(@doc.errors.count, "error") %> prohibited this doc from being saved:</h2>
 
       <ul>
-      <% @case_doc.errors.full_messages.each do |msg| %>
+      <% @doc.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @doc %> |
-<%= link_to 'Back', docs_path %>
+<%= link_to 'Show', case_doc_path(@case, @doc) %> |
+<%= link_to 'Back', case_docs_path %>

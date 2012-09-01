@@ -1,8 +1,13 @@
 <h1>Listing docs</h1>
 
 <ul>
-  <% @case_docs.each do |doc| %>
-    <li><%= doc.name %> | <%= link_to 'Show', doc %> | <%= link_to 'Edit', edit_doc_path(doc) %> | <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <% @docs.each do |doc| %>
+    <li>
+      <%= doc.name %> | 
+      <%= link_to 'Show', case_doc_path(@case, doc) %> | 
+      <%= link_to 'Edit', edit_case_doc_path(@case, doc) %> | 
+      <%= link_to 'Destroy', case_doc_path(@case, doc), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
   <% end %>
 </ul>
 

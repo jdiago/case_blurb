@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @case_doc.name %></h1>
+<h1><%= @doc.name %></h1>
 
-<%= link_to 'Edit', edit_doc_path(@doc) %> |
-<%= link_to 'Back', docs_path %>
+<%= link_to 'Edit', edit_case_doc_path(@case, @doc) %> |
+<%= link_to 'Back', case_docs_path %>
