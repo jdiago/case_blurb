@@ -36,6 +36,13 @@
     	</div>
     </div>
   </div>
+  <div class="span6">
+    <ul>
+    <% @case.docs.each do |doc| %>
+      <li><%= doc.name %></li>
+    <% end %>
+    </ul>
+  </div>
 </div>
 
 <style>
